@@ -1,0 +1,23 @@
+{
+  "skill_name": "testing-strategy",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我有一个 Java Spring Boot + Flutter 项目（后端+APP），需要生成完整的测试方案。后端通过 WireMock mock 外部 API（A/B platform、Permission Service），数据库用 MySQL。Flutter 端通过 Flutter Web + Playwright 做 E2E。请帮我生成 docs/testing/strategy.md。",
+      "expected_output": "生成的 strategy.md 应包含：(1) 10列层级总览表（含真实依赖/mock依赖列）(2) 分层逻辑表 (3) Mock 基础设施 SSOT (4) AC级追溯矩阵 (5) 场景数据表 (6) 质量门禁表。L3 应标注黑盒原则。文档目录应包含 scenarios/ 子目录。",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "我的项目是 Go 后端 + React 前端（后端+WEB），用 Playwright 做 E2E 测试，Testcontainers 做集成测试。请生成测试方案，特别是 L2 和 L3 的用例表格格式。",
+      "expected_output": "生成的方案应包含：(1) L2用例表按模块分节 (2) L3 E2E 表有 User Story 和定位/断言方式列 (3) 场景文件按 Epic + 技术模块拆分 (4) 8列 AC 级追溯表格（场景|Smoke|L1|L2-1|L2-2|L3-1|L3-2|L4）。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "我在 L3-2-app E2E 测试中发现一个 bug：CMS 返回的 touchpoint 内容缺少 paywallId 字段，导致 Flutter Widget 渲染崩溃。请告诉我应该怎么处理这个 bug——在哪个层级补测试？",
+      "expected_output": "应指出：(1) 这个 bug 应该在 L3-1-backend 被发现（CMS 字段完整性验证）(2) 需要在 L3-1 补充 CMS content completeness 用例 (3) L1 补充 null 字段防御性断言 (4) 遵循 TDD：先写失败测试再修复。引用左移原则和禁止反模式。",
+      "files": []
+    }
+  ]
+}

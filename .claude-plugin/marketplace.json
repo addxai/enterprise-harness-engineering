@@ -1,0 +1,12 @@
+{
+  "name": "enterprise-harness-engineering",
+  "owner": {
+    "name": "AddX.ai"
+  },
+  "plugins": [
+    {
+      "name": "enterprise-harness-engineering",
+      "source": "./"
+    }
+  ]
+}

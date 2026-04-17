@@ -1,0 +1,7 @@
+interface:
+  display_name: "TruffleHog CLI"
+  short_description: "本地/远程密钥扫描、pre-commit 接入与凭证有效性验证。"
+  default_prompt: "使用 $trufflehog-cli 扫描当前仓库泄露凭证，并汇总 verified 结果。"
+
+policy:
+  allow_implicit_invocation: true

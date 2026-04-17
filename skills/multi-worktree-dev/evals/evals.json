@@ -1,0 +1,23 @@
+{
+  "skill_name": "multi-worktree-dev",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我们项目有 Gateway（FastAPI）、Worker（Temporal）、前端（Next.js）、PostgreSQL 和 Redis。现在团队有 3 个人需要同时在不同 feature 分支上开发，经常遇到端口冲突和数据库被别人改了导致测试失败的问题。帮我设计一套本地多分支并行开发环境方案，包括服务分层、端口管理和测试隔离策略。",
+      "expected_output": "一个清晰的三层（L1/L2/L3）分层方案，包含每个服务的归档决策、端口 offset 策略、以及测试命令设计",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "我有两个 git worktree 同时在开发，worktree-A 在用 make dev 接收 Feishu 消息，然后我在 worktree-B 也跑了 make dev，结果 A 的 Feishu 连接断了。这个问题应该怎么解决？我需要设计什么机制来保证 Feishu WS 同一时间只有一个 worktree 能持有？",
+      "expected_output": "共享通道排他切换机制设计，包括 feishu-switch.sh 脚本逻辑和 make test* 不触发切换的规则",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "我们项目用了 Temporal 做工作流，现在把它放在 Layer 1（所有 worktree 共用），但发现 worktree-A 的 Workflow 会被 worktree-B 的 Worker 偷走执行，导致测试结果错乱。这个服务应该放哪层？怎么做隔离？",
+      "expected_output": "Temporal 应归档到 Layer 2 并使用 namespace per-worktree 隔离的建议，以及端口动态 offset 方案",
+      "files": []
+    }
+  ]
+}

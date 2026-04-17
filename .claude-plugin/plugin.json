@@ -1,0 +1,49 @@
+{
+  "name": "enterprise-harness-engineering",
+  "version": "1.0.0",
+  "description": "Enterprise-grade AI Agent Skills for software development, DevOps, SRE, security, and product teams.",
+  "author": {
+    "name": "AddX.ai",
+    "url": "https://github.com/addxai"
+  },
+  "homepage": "https://github.com/addxai/enterprise-harness-engineering",
+  "repository": "https://github.com/addxai/enterprise-harness-engineering",
+  "license": "Apache-2.0",
+  "keywords": [
+    "ai-agent",
+    "agent-skills",
+    "enterprise",
+    "devops",
+    "sre",
+    "code-review",
+    "security",
+    "monitoring"
+  ],
+  "skills": [
+    "skills/architect",
+    "skills/clean-cache",
+    "skills/code-review",
+    "skills/code-submit",
+    "skills/dev-workflow",
+    "skills/doc-writing",
+    "skills/embed-ci-setup",
+    "skills/gitlab-ci",
+    "skills/gitlab-mr",
+    "skills/grafana",
+    "skills/k8s-ops",
+    "skills/local-security-check",
+    "skills/mock-engine",
+    "skills/multi-worktree-dev",
+    "skills/prometheus",
+    "skills/security-compliance-review",
+    "skills/sentry",
+    "skills/sentry-onboarding",
+    "skills/sre-agent",
+    "skills/story-craftsman",
+    "skills/terraform-audit",
+    "skills/testing-strategy",
+    "skills/trufflehog-cli",
+    "skills/uat-story-writer",
+    "skills/voc-analysis"
+  ]
+}
