@@ -14,7 +14,8 @@ Don't just rely on existing data. Actively construct 10+ diverse queries from mu
 
 **Examples:**
 - Reddit: `searches: ["Brand Name", "Brand Name review", "Brand Name issue"]`
-- Twitter: `searchTerms: ["Brand Name", "#BrandName"]`
+- X Tweet Scraper: `searchTerms: ["Brand Name", "#BrandName"]`
+- X Follower Scraper: `twitterHandles: ["brand_handle", "competitor_handle"]`
 - Amazon: Own product ASIN (see `references/amazon-guide.md`)
 - App Store: Own app ID
 
@@ -92,7 +93,7 @@ Don't just rely on existing data. Actively construct 10+ diverse queries from mu
 | Platform | Best For | Sorting Strategy | Tips |
 |----------|----------|-----------------|------|
 | Reddit | Deep discussions, troubleshooting | hot/top (pain points) + new (latest) | Target specific subreddits |
-| Twitter/X | Real-time feedback, sentiment | Latest, past 3-6 months | Brand mentions + sentiment words |
+| Twitter/X | Real-time feedback, sentiment, audiences | Latest, past 3-6 months | Use the Xquik Tweet and Follower Actors |
 | Amazon Reviews | Post-purchase feedback | recent + helpful; focus 1★ and 5★ | Requires ASIN |
 | App Store | App-specific bugs, features | Recent, by rating segment | Use app ID |
 | Google Play | Android user feedback | Same as App Store | Check competitor apps too |

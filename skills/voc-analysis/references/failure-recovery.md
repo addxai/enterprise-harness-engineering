@@ -15,7 +15,8 @@ From cache or API, find runs with status: FAILED, ABORTED, TIMED-OUT.
 ### 2. Get Run Logs
 
 ```bash
-curl "https://api.apify.com/v2/actor-runs/{runId}/log?token=$APIFY_TOKEN"
+curl "https://api.apify.com/v2/logs/{runId}" \
+  -H "Authorization: Bearer $APIFY_TOKEN"
 ```
 
 ### 3. Common Failure Patterns
