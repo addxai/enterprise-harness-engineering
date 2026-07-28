@@ -103,16 +103,19 @@ If Python scripts aren't available:
 
 1. List runs via Apify REST API:
    ```bash
-   curl "https://api.apify.com/v2/actor-runs?limit=10&offset=0&desc=true&token=$APIFY_TOKEN"
+   curl "https://api.apify.com/v2/actor-runs?limit=10&offset=0&desc=true" \
+     -H "Authorization: Bearer $APIFY_TOKEN"
    ```
    Continue paginating until all runs reviewed.
 2. For each relevant run, get details:
    ```bash
-   curl "https://api.apify.com/v2/actor-runs/<RUN_ID>?token=$APIFY_TOKEN"
+   curl "https://api.apify.com/v2/actor-runs/<RUN_ID>" \
+     -H "Authorization: Bearer $APIFY_TOKEN"
    ```
 3. Download dataset:
    ```bash
-   curl "https://api.apify.com/v2/datasets/<DATASET_ID>/items?format=json&token=$APIFY_TOKEN" \
+   curl "https://api.apify.com/v2/datasets/<DATASET_ID>/items?format=json" \
+     -H "Authorization: Bearer $APIFY_TOKEN" \
      -o reference/<scraper_name>/dataset/<DATASET_ID>.json
    ```
 

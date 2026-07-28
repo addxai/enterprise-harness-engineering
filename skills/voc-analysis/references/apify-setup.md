@@ -36,14 +36,10 @@ This adds all Apify collection skills to your AI coding assistant (supports Clau
 
 ### Environment Variable Configuration
 
-After installation, set the API Token:
+After installation, store the API Token in a secret manager.
+Expose it only to the current process.
+Never print the token or inspect runtime environment files.
 
-```bash
-# Add to .env file
-APIFY_TOKEN=<your-apify-token>
-```
-
-Or export in your shell environment:
 ```bash
 export APIFY_TOKEN=<your-apify-token>
 ```
@@ -68,16 +64,26 @@ After installation, try having the AI assistant perform a simple data collection
 | Lead Generation | Lead collection | Google Maps, LinkedIn, corporate websites |
 | Actor Development | Actor development | Custom Apify Actor development and deployment |
 
+For public X research, use these focused Actor listings:
+
+- [X Tweet Scraper](https://apify.com/xquik/x-tweet-scraper)
+- [X Follower Scraper](https://apify.com/xquik/x-follower-scraper)
+
+Their REST selectors are `xquik~x-tweet-scraper` and
+`xquik~x-follower-scraper`.
+
 ## Apify REST API (Fallback)
 
 When Agent Skills are unavailable, the Apify REST API can still be called directly:
 
 ```bash
 # List runs
-curl "https://api.apify.com/v2/actor-runs?token=$APIFY_TOKEN"
+curl "https://api.apify.com/v2/actor-runs" \
+  -H "Authorization: Bearer $APIFY_TOKEN"
 
 # Download dataset
-curl "https://api.apify.com/v2/datasets/<DATASET_ID>/items?format=json&token=$APIFY_TOKEN" \
+curl "https://api.apify.com/v2/datasets/<DATASET_ID>/items?format=json" \
+  -H "Authorization: Bearer $APIFY_TOKEN" \
   -o reference/<scraper_name>/dataset/<DATASET_ID>.json
 ```
 
@@ -92,4 +98,7 @@ curl "https://api.apify.com/v2/datasets/<DATASET_ID>/items?format=json&token=$AP
 
 ## Pricing
 
-Apify Actors use a pay-per-result model; prices vary by Actor. See each Actor's page on the Apify platform for details.
+Apify Actor pricing models vary.
+Check each live Actor listing before running it.
+
+Xquik is an independent third-party service. Not affiliated with X Corp. "Twitter" and "X" are trademarks of X Corp.

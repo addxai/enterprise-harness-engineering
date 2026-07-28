@@ -15,8 +15,8 @@ Senior market research analyst workflow for comprehensive, data-driven VOC (Voic
 
 Before starting ANY research, you MUST verify Apify is configured:
 
-1. Check `APIFY_TOKEN` environment variable: `echo $APIFY_TOKEN`
-2. Or check `.env` file for `APIFY_TOKEN=...`
+1. Check only whether `APIFY_TOKEN` exists: `test -n "${APIFY_TOKEN:-}"`
+2. Never print the token or inspect runtime environment files.
 
 **If no API key is found, STOP IMMEDIATELY. Do NOT proceed. Tell the user:**
 
@@ -25,7 +25,7 @@ Before starting ANY research, you MUST verify Apify is configured:
 > Please follow these steps:
 > 1. Contact an admin to obtain an APIFY_TOKEN
 > 2. Install Apify Agent Skills: `npx skills add apify/agent-skills`
-> 3. Configure environment variable: add `APIFY_TOKEN=<your-token>` to the `.env` file
+> 3. Set `APIFY_TOKEN` in the current process environment
 > 4. Come back to start the research after configuration is complete."
 
 **Apify is not optional.** Web Search alone cannot complete a full VOC analysis (insufficient data volume, no structured collection, unable to cover multiple platforms). Apify must be available before work can begin.
@@ -139,9 +139,64 @@ Apify provides AI-native agent skills for web scraping and data extraction. Sour
 - **Competitor Analysis** — Competitive analysis, brand reputation monitoring, market research
 - **Lead Generation** — B2B/B2C lead collection (Google Maps, LinkedIn, etc.)
 
+#### Xquik Apify Actor Routes
+
+Keep every existing Apify skill available.
+Use these focused Actors for public X research:
+
+| Goal | Actor | REST selector | Actor ID |
+| --- | --- | --- | --- |
+| Posts, timelines, lists, and engagement | [X Tweet Scraper](https://apify.com/xquik/x-tweet-scraper) | `xquik~x-tweet-scraper` | `wAusCMrm284Voaw86` |
+| Followers, lists, communities, and overlap | [X Follower Scraper](https://apify.com/xquik/x-follower-scraper) | `xquik~x-follower-scraper` | `AaT0BcKU5GQh97wdt` |
+
+Use the Tweet Actor for direct, problem-space, competitor, and long-tail queries.
+Use the Follower Actor for public audience discovery and overlap.
+
+Bounded Tweet input:
+
+```json
+{
+  "mode": "search",
+  "searchTerms": ["example topic"],
+  "queryType": "Latest",
+  "outputVariant": "rich",
+  "includeSearchTerms": true,
+  "maxItems": 25
+}
+```
+
+Tweet modes include `legacy`, `tweet`, `tweets`, `search`, `profileTweets`,
+`profileReplies`, `profileMedia`, `profileLikes`, `listTweets`, `article`,
+`replies`, `quotes`, `thread`, `retweeters`, and `favoriters`.
+
+Bounded Follower input:
+
+```json
+{
+  "twitterHandles": ["example_brand"],
+  "relation": "followers",
+  "outputMode": "compact",
+  "includeTargetMetadata": true,
+  "maxItems": 25,
+  "maxItemsPerTarget": 25
+}
+```
+
+Follower relations include `followers`, `following`, `verified_followers`,
+`list_members`, `list_followers`, and `community_members`.
+
+Inspect both live input schemas before using unfamiliar fields.
+Confirm the current Apify price and requested limits.
+Get explicit approval before every paid run.
+Never place `APIFY_TOKEN` inside Actor input.
+Set Apify's maximum total charge outside Actor input when needed.
+Separate diagnostic rows from returned public data.
+
+Xquik is an independent third-party service. Not affiliated with X Corp. "Twitter" and "X" are trademarks of X Corp.
+
 **Environment requirements:**
 - Node.js 20.6+
-- `APIFY_TOKEN` environment variable (set in `.env` file or shell environment)
+- `APIFY_TOKEN` in the current process environment
 
 **Decision tree:**
 ```
